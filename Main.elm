@@ -47,7 +47,7 @@ update msg model =
     NewImg (Err _) ->
       let
         errorMessage =
-          "We couldn't find that movie 😯"
+          "We couldn't find that movie 😳 "
         errorImage =
           "oh-no.jpg"
       in
@@ -94,3 +94,4 @@ decodeMovieUrl =
   decode Movie
     |> JsonPipeline.required "Title" string
     |> JsonPipeline.required "Poster" string
+
