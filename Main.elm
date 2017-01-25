@@ -21,6 +21,11 @@ type alias Model =
   , posterUrl : String
   }
 
+type alias Movie =
+  { title : String
+  , posterUrl : String
+  }
+
 init : (Model, Cmd Msg)
 init =
   ( Model "Frozen" "" ""
@@ -47,7 +52,7 @@ update msg model =
     NewImg (Err _) ->
       let
         errorMessage =
-          "We couldn't find that movie 😳 "
+          "We couldn't find that movie 😳"
         errorImage =
           "oh-no.jpg"
       in
@@ -84,14 +89,8 @@ getMoviePoster searchString =
     in
       Http.send NewImg (Http.get url decodeMovieUrl)
 
-type alias Movie =
-  { title : String
-  , posterUrl : String
-  }
-
 decodeMovieUrl : Json.Decoder Movie
 decodeMovieUrl =
   decode Movie
     |> JsonPipeline.required "Title" string
     |> JsonPipeline.required "Poster" string
-
